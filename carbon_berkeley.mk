@@ -1,5 +1,4 @@
-#
-# Copyright (C) 2018 The LineageOS Project
+# Copyright 2014 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,20 +11,24 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
-# Inherit from those products. Most specific first.
+$(call inherit-product, device/huawei/berkeley/full_berkeley.mk)
+
+# Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/treble_common.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
-BOARD_BUILD_DISABLED_VBMETAIMAGE := false
+# Inherit Carbon GSM telephony parts
+$(call inherit-product, vendor/carbon/config/gsm.mk)
 
-# Inherit from berkeley device
-$(call inherit-product, device/huawei/berkeley/device.mk)
+# Inherit Carbon product configuration
+$(call inherit-product, vendor/carbon/config/common.mk)
 
-# Device identifier. This must come after all inclusions
+# Override Product Name for CarbonROM
+PRODUCT_NAME := carbon_berkeley
 PRODUCT_DEVICE := berkeley
-PRODUCT_NAME := full_berkeley
 PRODUCT_BRAND := Huawei
-PRODUCT_MODEL := berkeley
+PRODUCT_MODEL := Honor View 10
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.carbon.maintainer="Myself5"

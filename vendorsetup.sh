@@ -12,7 +12,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
-PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/carbon_berkeley.mk \
-    $(LOCAL_DIR)/full_berkeley.mk
+add_lunch_combo carbon_berkeley-userdebug
